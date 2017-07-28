@@ -42,9 +42,7 @@ public class MainActivity extends AppCompatActivity {
     */
     public void submitOrder(View view) {
         int price = calculatePrice(quantity);
-        //String priceMessage = "Total:$" + price;
         String priceMessage = createOrderSummary(price, "Dhanya");
-        //priceMessage = priceMessage + "\nThank you!";
         displayMessage(priceMessage);
     }
 
