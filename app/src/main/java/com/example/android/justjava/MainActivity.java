@@ -2,8 +2,10 @@ package com.example.android.justjava;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -13,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     TextView quantityTextView;
     Button submitButton;
     int quantity = 2;
+    boolean hasWhippedCream = false;
 
 
     @Override
@@ -37,12 +40,15 @@ public class MainActivity extends AppCompatActivity {
         displayQuantity(quantity);
     }
 
+
     /**
     * This method is called when the order button is clicked.
     */
     public void submitOrder(View view) {
         int price = calculatePrice(quantity);
-        String priceMessage = createOrderSummary(price, "Dhanya");
+        CheckBox whippedCreamCheckbox = (CheckBox) findViewById(R.id.whipped_cream_checkBox);
+        hasWhippedCream = whippedCreamCheckbox.isChecked();
+        String priceMessage = createOrderSummary(price, "Dhanya", hasWhippedCream);
         displayMessage(priceMessage);
     }
 
@@ -64,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
      * @return orderSummary
      */
 
-    public String createOrderSummary(int price, String name) {
-        String priceMessage = "Name:" + name + "\nQuantity:" + quantity + "\nTotal:$" + price + "\nThank you!";
+    public String createOrderSummary(int price, String name, boolean addWhippedCream) {
+        String priceMessage = "Name:" + name + "\nAdd whipped Cream? " + addWhippedCream + "\nQuantity:" + quantity + "\nTotal:$" + price + "\nThank you!";
         return priceMessage;
     }
 
